@@ -112,6 +112,8 @@ class Application extends BaseApplication {
 		if(file_exists($dir)) {
 			foreach(scandir($dir) as $item) {
 				if(strpos($item, '.php')) {
+				# TODO Add so the '.class' files are not added and thus make problems (example vim swap files). This happened to me many times throughout the process
+
 					$class = substr("AC\\Mutate\\Adapters\\".$item, 0, -4); //get rid of ".php"
 					$items[] = new $class;
 				}
@@ -133,6 +135,7 @@ class Application extends BaseApplication {
 		if(file_exists($dir)) {
 			foreach(scandir($dir) as $item) {
 				if(strpos($item, '.php')) {
+					# TODO: Make not read in . classes
 					$class = substr("AC\\Mutate\\Presets\\".$item, 0, -4); //get rid of ".php"
 					$items[] = new $class;
 				}
